@@ -1,0 +1,56 @@
+<div class="example-container">
+    <form class="create-account-form" [formGroup]="form" #virement (ngSubmit)="sendVirement(virement)"> 
+      <h4>Remplir Formulaire Virement</h4>
+        <div>
+            <mat-form-field >
+            <mat-label>CIN</mat-label>
+            <input matInput #input maxlength="10" placeholder="Ex : EE123456" formControlName="cin">
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div> 
+            <mat-form-field hintLabel="Max 24 characters" >
+                <mat-label>N° International</mat-label>
+                <input matInput #input maxlength="24" placeholder="Ex. 123456789123456789123456" formControlName="numinternational">
+              </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field >
+            <mat-label>Montant</mat-label>
+            <input matInput type="number" class="example-right-align" formControlName="montant">
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix></span>
+          </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button>Valider</button>
+        </div>
+        </form>
+
+
+        <div class="container" style="margin-top:30px; width:450px "  *ngIf="isVirement" id="MyDiv">
+           
+             
+            <div style="border:1px solid black;">
+            <h1 style="padding:10px;">Reçu de virement  </h1>
+           
+        <div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+  
+  
+            <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold">CIN : </span> {{viirement.person}} </p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Montant Totale : </span> {{viirement.somme}}</p>
+  
+            <p style=" background: lightgray;padding: 10px 0 10px 0"><span style="font-weight: bold;">A (num) : </span> {{numinternational.value}} </p>
+            <p style="padding: 10px 0 10px 0"><span style="font-weight: bold;">Lieu ,Date : </span> Le Maroc , {{date | date}} </p>
+  
+            <p  style=" background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="../../../assets/img/signer.png"></p>
+            
+      
+        </div>
+        
+        
+          </div>
+      </div>
+
+      <button class="btn btn-primary" *ngIf="isVirement"  value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+    </div>

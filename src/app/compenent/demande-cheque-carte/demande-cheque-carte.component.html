@@ -1,0 +1,162 @@
+<div style="width: 100%; padding-top: 1%;"><h1 style="font-size: 35px; text-align: center;">Demander Carte /Carnet de cheques</h1></div>
+
+
+<div class="alert alert-primary d-flex align-items-baseline" style="width:70%;margin: 30px auto 30px auto;" role="alert">
+    <div class="user_icon" style="margin-right:30px" >
+        <button mat-raised-button
+        matTooltip="{{client?.firstName}} {{client?.lastName}}"
+       style="background:none;
+       transition: none !important;
+    box-shadow: none !important;">
+        <img src="../../../assets/img/client.png">
+</button>
+       
+     </div>
+    <div><span>Vous pouvez demander une carte bancaire ou un carnet de chèque pour le compte numéro <span style="font-weight: bold">{{compteChoisi}}</span>  </span></div>
+  </div>
+
+
+<div class="grid-container">
+    <div class="example-container">
+    
+            <h2>Demande de Chèque</h2> 
+            
+            <div>
+                <p>Chèque Classique</p></div>
+            <div>
+                <button mat-raised-button (click)="addcheque()">Ajouter un Chèque</button>
+            </div>
+              </div>
+             
+
+          
+      
+   
+           
+        <div class="example-container-bleu">
+            <form [formGroup]="form" #newcarte (ngSubmit)="addcarte(newcarte)">
+            <h2>Demande de Carte</h2>
+            <div>
+            <mat-radio-group aria-label="Select an option" formControlName="typecarte">
+                <div class="radio">
+                    <mat-radio-button value="jeune">Carte Jeune</mat-radio-button>
+                </div>
+                <div  class="radio">
+                    <mat-radio-button value="femme">Carte Sayidaty</mat-radio-button>
+                </div>
+                <div class="radio">
+                    <mat-radio-button value="gold">Carte Gold</mat-radio-button>
+                </div>
+                <div class="radio">
+                    <mat-radio-button value="employee">Carte Employé</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div> 
+            <div>
+                <button mat-raised-button>Ajouter une carte banquaire</button>
+            </div>
+           
+        </form>
+        </div>  
+</div>
+
+
+<!--Pour cheque    --------------------- -->
+
+<div class="container" style="margin-top: 30px;" *ngIf="ccheque"  >
+    <div class="row">
+        <div class="col-lg-6 col-sm-6">
+           
+             
+    <div style="border:1px solid black;" id="MyDiv1">
+    <div class="d-flex flex-column">
+    <h1 style="padding:10px;">Reçu de demande du chèque </h1>
+    <p style="padding:10px;">{{requestcc.dateRequest | date:'medium'}}</p>
+</div>
+   
+<div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+
+
+    <p style="background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold">Recu N°: </span> {{requestcc.idRequest}} </p>
+    <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Type carnet : </span> Classique </p>
+
+    <p style=" background: lightblue;padding: 10px 0 10px 0"><span style="font-weight: bold;">Num compte : </span> {{requestcc.cheque.numcompte}} </p>
+    <div class="d-flex justify-content-between pr-3">
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Frais_ch : </span> 30 DH </p>
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">nbr pages : </span> 50 pages </p>
+    </div>
+    
+
+    <p  style=" background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="../../../assets/img/signer.png"></p>
+    
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class="btn btn-primary" *ngIf="ccheque"  value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+<!------pour cbancaire   -------------------->
+
+
+
+<div class="container" style="margin-top: 30px;" *ngIf="cbancaire"  >
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+               
+                 
+        <div style="border:1px solid black;" id="MyDiv">
+        <div class="d-flex flex-column">
+        <h1 style="padding:10px;">Reçu de demande du carte bancaire </h1>
+        <p style="padding:10px;">{{requestcb.dateRequest | date:'medium'}}</p>
+    </div>
+       
+    <div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+    
+    
+        <p style="background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold">Recu N°: </span> {{requestcb.idRequest}} </p>
+        <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Type carte : </span> {{requestcb.cardType}} </p>
+    
+        <p style=" background: lightblue;padding: 10px 0 10px 0"><span style="font-weight: bold;">Num compte : </span> {{requestcb.cheque.numcompte}} </p>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'femme'">
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 5000 DH </p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 1500 DH </p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> 60 DH </p>
+        </div>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'gold'">
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 2000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 2000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> 500 pages </p>
+        </div>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'jeune'">
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 3000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 1500 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> gratuit ! </p>
+        </div>
+        <div class="d-flex justify-content-between pr-3" *ngIf="requestcb.cardType == 'employee'">
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond paie : </span> 1500 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Plafond retrait : </span> 5000 DH </p>
+                <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">prix carte : </span> 120 pages </p>
+        </div>
+
+        
+    
+        <p  style=" background: lightblue; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="../../../assets/img/signer.png"></p>
+        
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <button class="btn btn-primary"  *ngIf="cbancaire"  value="CPTURE" (click)="downloadAsPDF1()">Enregistrer sous forme PDF</button>
+    
+    
+    
+    
+    
+    
+    
+    
+          
+    

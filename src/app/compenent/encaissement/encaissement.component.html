@@ -1,0 +1,66 @@
+<div>
+<div class="alert alert-primary d-flex align-items-baseline" style="margin:15px auto 15px auto;width:70%;" role="alert">
+    <div class="user_icon" style="margin-right:20px" >
+        <button mat-raised-button
+        matTooltip="{{ client?.firstName}} {{client?.lastName}}"
+       style="background:none;
+       transition: none !important;
+    box-shadow: none !important;">
+        <img src="../../../assets/img/client.png">
+</button>
+       
+     </div>
+    <div><span>Vous pouvez effectuer un encaissement de chèque pour le client <span style="font-weight: bold"> {{client?.firstName}} {{client?.lastName}}</span> ayant le CIN : <span style="font-weight: bold">{{client?.cin}}</span>  </span></div>
+</div>
+<div class="example-container">
+    <form class="create-account-form"  [formGroup]="form" #f  (ngSubmit)="encaisserCheque(f)"> 
+        <h2>Encaissement chèque</h2>
+        <div>
+            <mat-form-field appearance="standard" >
+            <mat-label>N° International (Bénéficiaire)</mat-label>
+            <input matInput #input maxlength="24" placeholder="Ex. 123456789123456789123456" value="{{currentAccount.numinternational}}" disabled=true>
+            <!-- <mat-hint align ="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field hintLabel="Max 24 characters" appearance="standard" >
+                <mat-label>N° International</mat-label>
+                <input matInput #input maxlength="24" placeholder="Ex. 123456789123456789123456" formControlName="numinternational">
+              </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="standard" >
+            <mat-label>Montant</mat-label>
+            <input matInput type="number" class="example-right-align" formControlName="montant">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+        </div>
+        <div> 
+            <button mat-raised-button>Encaisser</button>
+        </div>
+        </form>
+
+        <div class="container" style="margin-top: 30px;"  *ngIf="isEncaiss" id="MyDiv">
+           
+             
+            <div style="border:1px solid black;">
+            <h1 style="padding:10px;">Reçu d'encaissement du chèque </h1>
+            <h2>(compte à compte)</h2>
+        <div style="text-align: left; padding-left: 7px; margin-bottom:40px" >
+
+            <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold">Recu N° : </span> {{NewCheque.id}} </p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">Montant Totale : </span> {{NewCheque.montant}}</p>
+            <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold">Num cheque : </span> {{NewCheque.numcheque}}</p>
+            <p style=" padding: 10px 0 10px 0"><span style="font-weight: bold;">A (num) : </span> {{NewCheque.numinternational}} </p>
+            <p style="background: lightgray; padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Lieu, Date : </span>Le Maroc {{NewCheque.date_encaissement}} </p>
+            <p  style=" padding: 10px 0 10px 0"><span style="font-weight: bold;margin-bottom: 10px;">Signature : </span><img style="width:25px;height:auto;margin-left: 30px;" src="../../../assets/img/signer.png"></p>
+            
+      
+        </div>
+        
+        
+          </div>
+      </div>
+      <button class="btn btn-primary" *ngIf="isEncaiss" value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+      </div>
+    </div>
