@@ -71,7 +71,6 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { CarteBComponent } from './compenent/carte-b/carte-b.component';
 import { AcceuilComponent } from './compenent/acceuil/acceuil.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
