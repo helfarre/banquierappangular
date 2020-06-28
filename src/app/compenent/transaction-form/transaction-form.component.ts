@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TrasnactionService } from 'src/app/services/trasnaction.service';
 import { CompteService } from 'src/app/services/compte.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Compte, Client, banquier } from 'src/app/Models/Compte.Model';
 import { ClientService } from 'src/app/services/client.service';
 import { BankerService } from 'src/app/services/banker.service';
@@ -16,7 +15,7 @@ import { Transaction } from 'src/app/Models/Transaction.Model';
 export class TransactionFormComponent implements OnInit {
 
   constructor(private trans : TrasnactionService,private comService:CompteService,
-    private router:Router,private route:ActivatedRoute,private clientService:ClientService
+    private clientService:ClientService
     ,private bankerService : BankerService) { }
 
     @Input() currentAccount : Compte ;
@@ -114,7 +113,8 @@ export class TransactionFormComponent implements OnInit {
 
 
       public downloadAsPDF() {
-        return xepOnline.Formatter.Format('MyDiv',{render: 'download'});
-      }
-
-}
+        return xepOnline.Formatter.Format('MyDiv',{render: 'download',
+        embedLocalImages :'true'
+    });
+    }
+    }

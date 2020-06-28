@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientService {
-  Baseurl : string = "https://bank-app-api.herokuapp.com/Client/";
+  Baseurl : string = "https://bank-app-api.herokuapp.com/";
 
   constructor(private httpClient:HttpClient ) { }
   public ajouterClient(client : Client) {

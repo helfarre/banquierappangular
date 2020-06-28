@@ -79,6 +79,8 @@ sendEncaissement(encaissement)
     
 }  
 public downloadAsPDF() {
-  return xepOnline.Formatter.Format('MyDiv',{render: 'download'});
+  return xepOnline.Formatter.Format('MyDiv',{render: 'download',
+  embedLocalImages :'true'
+});
 }
 }

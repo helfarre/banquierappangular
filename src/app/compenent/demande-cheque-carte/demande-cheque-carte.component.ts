@@ -53,7 +53,7 @@ export class DemandeChequeCarteComponent implements OnInit {
     if(this.Typecarte.value!=""){
     this.compteService.ajoutercarteBancaire(carte).subscribe(res=>{
       if (res == -1 ){
-        alert("Ce compte contient déjà une carte bancaire, ou vous une denande en cours de traitement")
+        alert("Ce compte contient déjà une carte bancaire, ou vous une demande en cours de traitement")
       }
       else{
         alert("demande carte ajoutée avec success");

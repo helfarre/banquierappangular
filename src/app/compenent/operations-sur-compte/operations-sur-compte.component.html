@@ -17,7 +17,7 @@ box-shadow: none !important;">
 <app-dashboard-account-table [accounts]="accounts" (ccompte)="oncompte($event)"></app-dashboard-account-table>
 <div class="container"> 
   <div  class="info">
-      <p *ngIf="selected" >Account number : {{currentAccount.numcompte}}</p>
+      <p *ngIf="selected" >Numero de compte : {{currentAccount.numcompte}}</p>
      <p  *ngIf="selected"class="balance" > Balance : {{currentAccount.balance}} MAD</p>
       <button  *ngIf="selected" (click)="fermerCompte()" style="width: 20%;background-color: red; color: white; margin : 10px; border: none ; border-radius: 20px">Fermer Compte</button>
      <p *ngIf="!selected">Veuillez selectionner un compte du tableau : </p>
@@ -40,7 +40,7 @@ box-shadow: none !important;">
 
   <div class="col " *ngIf="!containsCarte">
 <div  class="  d-flex flex-column align-items-center">
-<div class="alert alert-danger ">there is no card for this account</div>
+<div class="alert alert-danger ">Aucune carte est liée à ce compte </div>
 </div>
 
 </div>

@@ -55,7 +55,7 @@
         <div class="col-lg-6 col-sm-6" style="border:1px solid black;"  >
           <div id="MyDIv">
          
-      <h1 style="padding:10px;">Reçu d'ouverture d'un compte :</h1>
+      <h1 style="padding:10px; background: lightblue">Reçu d'ouverture d'un compte :</h1>
       <div class="agence_property" style="text-align: left; padding-left: 7px; margin-bottom:40px">
       <p><span style="font-weight: bold">Agence : </span> {{agence.name}} ,{{agence.adresse}} </p>
       <p><span style="font-weight: bold">Devise : </span> Dirham Marocain (MAD)</p>
@@ -88,7 +88,7 @@
       <p *ngIf="typeC == 'Epargne'" style="margin: 7px 0 7px 0">taux d'intérêts : 2%</p>
       <hr style="margin:40px 0 0px 0">
       <div class="bas">
-        <span>email : {{agence.email}}</span><span style="padding-left:15px">phone : {{agence.phone}}</span>  <span style="padding-left:15px">fax : {{agence.fax}}</span>
+        <span>email : {{agence.email}}</span><span style="padding-left:17px">phone : {{agence.phone}}</span>  <span style="padding-left:17px">fax : {{agence.fax}}</span>
         
       
       </div> 
@@ -100,6 +100,6 @@
 </div>
   </div>
     </div>
-    <button class="btn btn-primary" *ngIf="labValider" value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
-<button  class="btn btn-primary"  *ngIf="labValider && typeC == 'Cheque'" (click)="demandeCC()">suivant</button>
+    <button style="margin-top:7px;" class="btn btn-primary" *ngIf="labValider" value="CPTURE" (click)="downloadAsPDF()">Enregistrer sous forme PDF</button>
+<button style="margin-top:7px;" class="btn btn-primary"  *ngIf="labValider && typeC == 'Cheque'" (click)="demandeCC()">suivant</button>
 </div>
